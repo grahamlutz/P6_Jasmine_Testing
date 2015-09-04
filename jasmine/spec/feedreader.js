@@ -37,7 +37,7 @@ $(function() {
         it('have URL that is not empty or undefined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).not.toBe('');
-                expect(allFeeds[i].url).not.toBe(undefined);
+                expect(allFeeds[i].url).toBeDefined();
             }
         });
 
@@ -48,7 +48,7 @@ $(function() {
         it('have name that is not empty or undefined', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).not.toBe('');
-                expect(allFeeds[i].name).not.toBe(undefined);
+                expect(allFeeds[i].name).toBeDefined();
             }
         });
     });
@@ -92,10 +92,10 @@ $(function() {
     });
 
     describe('New Feed Selection', function() {
-
-        var currentTitle = $('.header-title').html();
+        var currentEntry;
         beforeEach(function(done) {
             loadFeed(0, loadFeed(1, done));
+            currentEntry = $('.entry h2').html();
         });
         afterEach(function(done){
             loadFeed(0, done);
@@ -104,7 +104,9 @@ $(function() {
          * that the content actually changes.
          */
         it('changes content', function() {
-            expect($('.header-title').html()).not.toBe(currentTitle);
+            console.log(currentEntry);
+            console.log($('.entry h2').html());
+            expect($('.entry h2').html()).not.toBe(currentEntry);
         });
     });
 }());
