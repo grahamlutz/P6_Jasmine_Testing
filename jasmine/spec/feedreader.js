@@ -104,8 +104,6 @@ $(function() {
          * that the content actually changes.
          */
         it('changes content', function() {
-            console.log(currentEntry);
-            console.log($('.entry h2').html());
             expect($('.entry h2').html()).not.toBe(currentEntry);
         });
     });
